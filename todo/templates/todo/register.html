@@ -8,13 +8,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" sizes="16x16" href="{% static 'img/favicon.jpg' %}">
     
-    <title>Login</title>
+    <title>Register</title>
    </head>
 <body>
   <div class="wrapper">
-    <h2>Register</h2>
+    <h2>Register</h2><br>
+
+    {% if messages %}
+        {% for message in messages %}
+          <h2 style="color: firebrick;">{{ message }}</h2>
+        {% endfor %}
+    {% endif %}
     
-    <form action="#" method="POST">
+    <form action="{% url 'register' %}" method="POST">
+      {% csrf_token %}
       <div class="input-box">
         <input type="text" placeholder="Create a username" required name="username">
       </div>
@@ -27,7 +34,7 @@
       <div class="policy">
       </div>
       <div class="input-box button">
-        <input type="Submit" value="Login">
+        <input type="Submit" value="Register">
       </div>
       <div class="text">
         <h3>Already have an account? <a href="{% url 'login' %}">Login</a></h3>

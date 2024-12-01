@@ -13,13 +13,25 @@
 <body>
   <div class="wrapper">
     <h2>Login</h2>
-    
-    <form action="#" method="POST">
+    {% if messages %}
+        {% for message in messages %}
+          {% if message.tags == 'error' %}
+          <h2 style="color: firebrick;">{{ message }}</h2>
+          {% endif %}
+
+          {% if message.tags == 'success' %}
+          <h2 style="color: green;">{{ message }}</h2>
+          {% endif %}
+          
+        {% endfor %}
+    {% endif %}
+    <form action="{% url 'login' %}" method="POST">
+      {% csrf_token %}
       <div class="input-box">
-        <input type="text" placeholder="Enter your username" required name="uname">
+        <input type="text" placeholder="Enter your username" required name="username">
       </div>
       <div class="input-box">
-        <input type="password" placeholder="Enter your password" required name="pass">
+        <input type="password" placeholder="Enter your password" required name="password">
       </div>
       <div class="policy">
       </div>
